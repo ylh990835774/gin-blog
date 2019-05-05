@@ -49,3 +49,12 @@
   INSERT INTO `blog_auth` (`id`, `username`, `password`) VALUES (null, 'test', 'test123456');
 
   ```
+
+- 依赖包
+
+  - go get -u github.com/gin-gonic/gin
+  - go get -u github.com/go-ini/ini
+  - go get -u github.com/Unknwon/com
+  - go get -u github.com/jinzhu/gorm
+  - go get -u github.com/go-sql-driver/mysql
+  - go get -u github.com/astaxie/beego/validation
