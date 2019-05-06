@@ -78,3 +78,9 @@ func EditTag(id int, data interface{}) bool {
 
 	return true
 }
+
+// 硬删除: deleted_on 不为空的数据, 配合定时器(cron.go)使用
+func CleanAllTag() bool {
+	db.Unscoped().Where("deleted_on != ?", 0).Delete(&Tag{})
+	return true
+}

@@ -14,6 +14,8 @@
 - init database
 
   ```
+  CREATE DATABASE gin_blog default charset utf8 COLLATE utf8_general_ci;
+
   CREATE TABLE `blog_article` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `tag_id` int(10) unsigned DEFAULT '0' COMMENT '标签ID',
@@ -25,7 +27,7 @@
     `modified_on` int(10) unsigned DEFAULT '0' COMMENT '修改时间',
     `modified_by` varchar(255) DEFAULT '' COMMENT '修改人',
     `state` tinyint(3) unsigned DEFAULT '1' COMMENT '状态 0为禁用1为启用',
-    `deleted_on` int(11) DEFAULT NULL COMMENT '删除时间',
+    `deleted_on` int(11) DEFAULT '0' COMMENT '删除时间',
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='文章管理';
 
@@ -37,7 +39,7 @@
     `modified_on` int(10) unsigned DEFAULT '0' COMMENT '修改时间',
     `modified_by` varchar(100) DEFAULT '' COMMENT '修改人',
     `state` tinyint(3) unsigned DEFAULT '1' COMMENT '状态 0为禁用、1为启用',
-    `deleted_on` int(11) DEFAULT NULL COMMENT '删除时间',
+    `deleted_on` int(11) DEFAULT '0' COMMENT '删除时间',
     PRIMARY KEY (`id`)
   ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文章标签管理';
 
@@ -63,3 +65,4 @@
   - go get -u github.com/dgrijalva/jwt-go
   - go get -u github.com/fvbock/endless
   - go get -u github.com/swaggo/swag/cmd/swag
+  - go get -u github.com/robfig/cron
