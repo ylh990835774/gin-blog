@@ -1,13 +1,21 @@
 package main
 
 import (
-	"gin-blog/routers"
 	"gin-blog/pkg/setting"
-	"net/http"
+	"gin-blog/models"
+	"gin-blog/pkg/logging"
+	"github.com/fvbock/endless"
+	"gin-blog/routers"
+	"log"
+	"syscall"
 	"fmt"
 )
 
 func main() {
+
+	setting.Setup()
+	models.Setup()
+	logging.Setup()
 
 	/** 以下是Golang >= 1.8，可以考虑使用 http.Server 的 Shutdown 方法
 	// 可通过 lsof -i:8000 + kill -9 PID 杀死
@@ -41,12 +49,12 @@ func main() {
 	log.Println("Server exiting")
 	*/
 
-	/** 以下是 实现优雅重启
+	/** 以下是 实现优雅重启*/
 
-	endless.DefaultReadTimeOut = setting.ReadTimeout
-	endless.DefaultWriteTimeOut = setting.WriteTimeout
+	endless.DefaultReadTimeOut = setting.ServerSetting.ReadTimeout
+	endless.DefaultWriteTimeOut = setting.ServerSetting.WriteTimeout
 	endless.DefaultMaxHeaderBytes = 1 << 20
-	endPoint := fmt.Sprintf(":%d", setting.HTTPPort)
+	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
 
 	// endless.NewServer 返回一个初始化的 endlessServer 对象，
 	// 在 BeforeBegin 时输出当前进程的 pid，调用 ListenAndServe 将实际“启动”服务
@@ -59,9 +67,9 @@ func main() {
 	if err != nil {
 		log.Printf("Server err: %v", err)
 	}
-	*/
 
-	/** 以下是 常规的启动方式*/
+
+	/** 以下是 常规的启动方式
 
 	router := routers.InitRouter()
 
@@ -74,5 +82,5 @@ func main() {
 	}
 
 	s.ListenAndServe()
-
+	*/
 }
