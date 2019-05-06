@@ -5,6 +5,7 @@ import (
 	"time"
 	"os"
 	"log"
+	"path/filepath"
 )
 
 var (
@@ -26,7 +27,7 @@ func getLogFileFullPath() string {
 
 func openLogFile(filePath string) *os.File {
 	// os.Stat：返回文件信息结构描述文件。如果出现错误，会返回*PathError
-	_, err := os.Stat(filePath)
+	_, err := os.Stat(filepath.Dir(filePath))
 	switch {
 	// os.IsNotExist：能够接受ErrNotExist、syscall的一些错误，它会返回一个布尔值，能够得知文件不存在或目录不存在
 	case os.IsNotExist(err):
