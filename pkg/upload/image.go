@@ -1,47 +1,48 @@
 package upload
 
 import (
-	"gin-blog/pkg/setting"
+	"fmt"
+	"log"
+	"mime/multipart"
+	"os"
 	"path"
 	"strings"
-	"gin-blog/pkg/util"
-	"gin-blog/pkg/file"
-	"os"
-	"fmt"
-	"mime/multipart"
-	"log"
-	"gin-blog/pkg/logging"
+
+	"gin-blog-demo/pkg/file"
+	"gin-blog-demo/pkg/logging"
+	"gin-blog-demo/pkg/setting"
+	"gin-blog-demo/pkg/util"
 )
 
-// 获取图片完整访问URL
+// GetImageFullUrl get the full access path
 func GetImageFullUrl(name string) string {
-	return setting.AppSetting.ImagePrefixUrl + "/" + GetImagePath() + name
+	return setting.AppSetting.PrefixUrl + "/" + GetImagePath() + name
 }
 
-// 获取图片名称
+// GetImageName get image name
 func GetImageName(name string) string {
 	ext := path.Ext(name)
 	fileName := strings.TrimSuffix(name, ext)
-	fileName = util.EncodeMd5(fileName)
+	fileName = util.EncodeMD5(fileName)
 
 	return fileName + ext
 }
 
-// 获取图片路径
+// GetImagePath get save path
 func GetImagePath() string {
 	return setting.AppSetting.ImageSavePath
 }
 
-// 获取图片完整路径
+// GetImageFullPath get full save path
 func GetImageFullPath() string {
 	return setting.AppSetting.RuntimeRootPath + GetImagePath()
 }
 
-// 检查图片后缀
+// CheckImageExt check image file ext
 func CheckImageExt(fileName string) bool {
 	ext := file.GetExt(fileName)
 	for _, allowExt := range setting.AppSetting.ImageAllowExts {
-		if  strings.ToUpper(allowExt) == strings.ToUpper(ext) {
+		if strings.ToUpper(allowExt) == strings.ToUpper(ext) {
 			return true
 		}
 	}
@@ -49,7 +50,7 @@ func CheckImageExt(fileName string) bool {
 	return false
 }
 
-// 检查图片大小
+// CheckImageSize check image size
 func CheckImageSize(f multipart.File) bool {
 	size, err := file.GetSize(f)
 	if err != nil {
@@ -57,10 +58,11 @@ func CheckImageSize(f multipart.File) bool {
 		logging.Warn(err)
 		return false
 	}
+
 	return size <= setting.AppSetting.ImageMaxSize
 }
 
-// 检查图片
+// CheckImage check if the file exists
 func CheckImage(src string) error {
 	dir, err := os.Getwd()
 	if err != nil {
@@ -74,7 +76,7 @@ func CheckImage(src string) error {
 
 	perm := file.CheckPermission(src)
 	if perm == true {
-		return fmt.Errorf("file.CheckPremission Permission denied src: %s", src)
+		return fmt.Errorf("file.CheckPermission Permission denied src: %s", src)
 	}
 
 	return nil

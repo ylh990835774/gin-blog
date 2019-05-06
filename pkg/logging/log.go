@@ -1,11 +1,12 @@
 package logging
 
 import (
-	"os"
-	"log"
-	"runtime"
 	"fmt"
+	"gin-blog-demo/pkg/file"
+	"log"
+	"os"
 	"path/filepath"
+	"runtime"
 )
 
 type Level int
@@ -22,51 +23,57 @@ var (
 )
 
 const (
-	DEBUG   Level = iota
+	DEBUG Level = iota
 	INFO
 	WARNING
 	ERROR
 	FATAL
 )
 
+// Setup initialize the log instance
 func Setup() {
 	var err error
 	filePath := getLogFilePath()
 	fileName := getLogFileName()
-	F, err = openLogFile(fileName, filePath)
+	F, err = file.MustOpen(fileName, filePath)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalf("logging.Setup err: %v", err)
 	}
 
-	// log.New：创建一个新的日志记录器。
-	//     out定义要写入日志数据的IO句柄。
-	//     prefix定义每个生成的日志行的开头。
-	//	   flag定义了日志记录属性
-	// log.LstdFlags：日志记录的格式属性之一
 	logger = log.New(F, DefaultPrefix, log.LstdFlags)
 }
 
+// Debug output logs at debug level
 func Debug(v ...interface{}) {
 	setPrefix(DEBUG)
 	logger.Println(v)
 }
+
+// Info output logs at info level
 func Info(v ...interface{}) {
 	setPrefix(INFO)
 	logger.Println(v)
 }
+
+// Warn output logs at warn level
 func Warn(v ...interface{}) {
 	setPrefix(WARNING)
 	logger.Println(v)
 }
+
+// Error output logs at error level
 func Error(v ...interface{}) {
 	setPrefix(ERROR)
 	logger.Println(v)
 }
+
+// Fatal output logs at fatal level
 func Fatal(v ...interface{}) {
 	setPrefix(FATAL)
-	logger.Println(v)
+	logger.Fatalln(v)
 }
 
+// setPrefix set the prefix of the log output
 func setPrefix(level Level) {
 	_, file, line, ok := runtime.Caller(DefaultCallerDepth)
 	if ok {
