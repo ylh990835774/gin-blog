@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"gin-blog-demo/pkg/e"
+	"gin-blog/pkg/e"
 )
 
 type Article struct {

@@ -8,13 +8,13 @@ import (
 	"github.com/boombuler/barcode/qr"
 	"github.com/gin-gonic/gin"
 
-	"gin-blog-demo/pkg/app"
-	"gin-blog-demo/pkg/e"
-	"gin-blog-demo/pkg/qrcode"
-	"gin-blog-demo/pkg/setting"
-	"gin-blog-demo/pkg/util"
-	"gin-blog-demo/service/article_service"
-	"gin-blog-demo/service/tag_service"
+	"gin-blog/pkg/app"
+	"gin-blog/pkg/e"
+	"gin-blog/pkg/qrcode"
+	"gin-blog/pkg/setting"
+	"gin-blog/pkg/util"
+	"gin-blog/service/article_service"
+	"gin-blog/service/tag_service"
 )
 
 // @Summary Get a single article

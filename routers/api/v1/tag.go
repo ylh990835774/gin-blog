@@ -7,13 +7,13 @@ import (
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 
-	"gin-blog-demo/pkg/app"
-	"gin-blog-demo/pkg/e"
-	"gin-blog-demo/pkg/export"
-	"gin-blog-demo/pkg/logging"
-	"gin-blog-demo/pkg/setting"
-	"gin-blog-demo/pkg/util"
-	"gin-blog-demo/service/tag_service"
+	"gin-blog/pkg/app"
+	"gin-blog/pkg/e"
+	"gin-blog/pkg/export"
+	"gin-blog/pkg/logging"
+	"gin-blog/pkg/setting"
+	"gin-blog/pkg/util"
+	"gin-blog/service/tag_service"
 )
 
 // @Summary Get multiple article tags

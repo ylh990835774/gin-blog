@@ -1,6 +1,6 @@
 package export
 
-import "gin-blog-demo/pkg/setting"
+import "gin-blog/pkg/setting"
 
 const EXT = ".xlsx"
 

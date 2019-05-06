@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"gin-blog-demo/pkg/setting"
+	"gin-blog/pkg/setting"
 )
 
 // getLogFilePath get the log file save path

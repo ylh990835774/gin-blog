@@ -15,8 +15,8 @@ info:
   description: An example of gin
   license:
     name: MIT
-    url: https://gin-blog-demo/blob/master/LICENSE
-  termsOfService: https://gin-blog-demo
+    url: https://gin-blog/blob/master/LICENSE
+  termsOfService: https://gin-blog
   title: Golang Gin API
   version: "1.0"
 paths:

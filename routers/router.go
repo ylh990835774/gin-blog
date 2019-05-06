@@ -5,16 +5,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	_ "gin-blog-demo/docs"
+	_ "gin-blog/docs"
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 
-	"gin-blog-demo/middleware/jwt"
-	"gin-blog-demo/pkg/export"
-	"gin-blog-demo/pkg/qrcode"
-	"gin-blog-demo/pkg/upload"
-	"gin-blog-demo/routers/api"
-	"gin-blog-demo/routers/api/v1"
+	"gin-blog/middleware/jwt"
+	"gin-blog/pkg/export"
+	"gin-blog/pkg/qrcode"
+	"gin-blog/pkg/upload"
+	"gin-blog/routers/api"
+	"gin-blog/routers/api/v1"
 )
 
 // InitRouter initialize routing information

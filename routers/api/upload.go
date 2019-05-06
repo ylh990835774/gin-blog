@@ -5,10 +5,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"gin-blog-demo/pkg/app"
-	"gin-blog-demo/pkg/e"
-	"gin-blog-demo/pkg/logging"
-	"gin-blog-demo/pkg/upload"
+	"gin-blog/pkg/app"
+	"gin-blog/pkg/e"
+	"gin-blog/pkg/logging"
+	"gin-blog/pkg/upload"
 )
 
 // @Summary Import Image

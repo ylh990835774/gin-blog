@@ -3,7 +3,7 @@ package app
 import (
 	"github.com/astaxie/beego/validation"
 
-	"gin-blog-demo/pkg/logging"
+	"gin-blog/pkg/logging"
 )
 
 // MarkErrors logs error logs

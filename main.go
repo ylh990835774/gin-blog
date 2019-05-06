@@ -7,11 +7,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"gin-blog-demo/models"
-	"gin-blog-demo/pkg/gredis"
-	"gin-blog-demo/pkg/logging"
-	"gin-blog-demo/pkg/setting"
-	"gin-blog-demo/routers"
+	"gin-blog/models"
+	"gin-blog/pkg/gredis"
+	"gin-blog/pkg/logging"
+	"gin-blog/pkg/setting"
+	"gin-blog/routers"
 )
 
 func init() {
@@ -24,9 +24,9 @@ func init() {
 // @title Golang Gin API
 // @version 1.0
 // @description An example of gin
-// @termsOfService https://gin-blog-demo
+// @termsOfService https://gin-blog
 // @license.name MIT
-// @license.url https://gin-blog-demo/blob/master/LICENSE
+// @license.url https://gin-blog/blob/master/LICENSE
 func main() {
 	gin.SetMode(setting.ServerSetting.RunMode)
 

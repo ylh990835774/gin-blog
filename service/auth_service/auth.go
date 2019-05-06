@@ -1,6 +1,6 @@
 package auth_service
 
-import "gin-blog-demo/models"
+import "gin-blog/models"
 
 type Auth struct {
 	Username string

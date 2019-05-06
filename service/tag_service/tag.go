@@ -9,11 +9,11 @@ import (
 	"github.com/360EntSecGroup-Skylar/excelize"
 	"github.com/tealeg/xlsx"
 
-	"gin-blog-demo/models"
-	"gin-blog-demo/pkg/export"
-	"gin-blog-demo/pkg/gredis"
-	"gin-blog-demo/pkg/logging"
-	"gin-blog-demo/service/cache_service"
+	"gin-blog/models"
+	"gin-blog/pkg/export"
+	"gin-blog/pkg/gredis"
+	"gin-blog/pkg/logging"
+	"gin-blog/service/cache_service"
 )
 
 type Tag struct {
