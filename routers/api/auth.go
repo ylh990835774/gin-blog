@@ -6,8 +6,8 @@ import (
 	"gin-blog/pkg/e"
 	"gin-blog/models"
 	"gin-blog/pkg/util"
-	"log"
 	"net/http"
+	"gin-blog/pkg/logging"
 )
 
 type auth struct {
@@ -41,7 +41,7 @@ func GetAuth(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Printf("err.key: %s, err.message: %s", err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 
