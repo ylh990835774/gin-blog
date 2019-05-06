@@ -60,3 +60,4 @@
   - go get -u github.com/astaxie/beego/validation
   - go get -u github.com/dgrijalva/jwt-go
   - go get -u github.com/fvbock/endless
+  - go get -u github.com/swaggo/swag/cmd/swag

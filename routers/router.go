@@ -7,9 +7,20 @@ import (
 	"github.com/gin-gonic/gin"
 	"gin-blog/routers/api"
 	"gin-blog/middleware/jwt"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+	"gin-blog/docs"
 )
 
 func InitRouter() *gin.Engine {
+
+	// programatically set swagger info
+	docs.SwaggerInfo.Title = "Swagger Example API"
+	docs.SwaggerInfo.Description = "This is a sample server Petstore server."
+	docs.SwaggerInfo.Version = "1.0"
+	docs.SwaggerInfo.Host = "petstore.swagger.io"
+	docs.SwaggerInfo.BasePath = "/v2"
+
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
@@ -41,6 +52,9 @@ func InitRouter() *gin.Engine {
 		apiv1.DELETE("/articles/:id", v1.DeleteArticle)
 
 	}
+
+	// http://127.0.0.1:8000/swagger/index.html
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// test api
 	r.GET("/test", func(c *gin.Context) {

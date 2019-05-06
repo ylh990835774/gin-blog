@@ -1,20 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"gin-blog/pkg/setting"
-	"log"
 	"gin-blog/routers"
-	"os"
-	"os/signal"
-	"context"
-	"time"
+	"gin-blog/pkg/setting"
+	"net/http"
+	"fmt"
 )
 
 func main() {
 
-	/** 以下是Golang >= 1.8，可以考虑使用 http.Server 的 Shutdown 方法*/
+	/** 以下是Golang >= 1.8，可以考虑使用 http.Server 的 Shutdown 方法
 	// 可通过 lsof -i:8000 + kill -9 PID 杀死
 	router := routers.InitRouter()
 	s := &http.Server{
@@ -44,6 +39,7 @@ func main() {
 	}
 
 	log.Println("Server exiting")
+	*/
 
 	/** 以下是 实现优雅重启
 
@@ -65,7 +61,7 @@ func main() {
 	}
 	*/
 
-	/** 以下是 常规的启动方式
+	/** 以下是 常规的启动方式*/
 
 	router := routers.InitRouter()
 
@@ -78,5 +74,5 @@ func main() {
 	}
 
 	s.ListenAndServe()
-	*/
+
 }
