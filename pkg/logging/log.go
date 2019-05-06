@@ -30,8 +30,13 @@ const (
 )
 
 func Setup() {
-	filePath := getLogFileFullPath()
-	F = openLogFile(filePath)
+	var err error
+	filePath := getLogFilePath()
+	fileName := getLogFileName()
+	F, err = openLogFile(fileName, filePath)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	// log.New：创建一个新的日志记录器。
 	//     out定义要写入日志数据的IO句柄。
