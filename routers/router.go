@@ -10,6 +10,8 @@ import (
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 	"gin-blog/docs"
+	"net/http"
+	"gin-blog/pkg/upload"
 )
 
 func InitRouter() *gin.Engine {
@@ -25,6 +27,10 @@ func InitRouter() *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	gin.SetMode(setting.RunMode)
+
+	// 静态图片文件支持直接访问
+	// http://127.0.0.1:8000/upload/images/70682896e24287b0476eff2a14c148f0.jpg
+	r.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
 
 	r.GET("/auth", api.GetAuth)
 
@@ -55,6 +61,8 @@ func InitRouter() *gin.Engine {
 
 	// http://127.0.0.1:8000/swagger/index.html
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	r.POST("/upload", api.UploadImage)
 
 	// test api
 	r.GET("/test", func(c *gin.Context) {
